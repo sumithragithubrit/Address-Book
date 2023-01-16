@@ -7,6 +7,10 @@ public class AddressBookMain {
         System.out.println(con);
         AddressBook familyBook = new AddressBook();
         familyBook.addContact();
+        familyBook.editContact();
+        System.out.println(familyBook);
+        familyBook.deleteContact();
+        System.out.println(familyBook);
        
     }
 }
