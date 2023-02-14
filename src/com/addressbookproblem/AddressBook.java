@@ -1,4 +1,5 @@
 package com.addressbookproblem;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -7,7 +8,6 @@ public class AddressBook {
     static ArrayList<Contact> contactList = new ArrayList<>();
     static HashMap<String, AddressBook> addressBookMap = new HashMap<>();
     Scanner sc = new Scanner(System.in);
-
     public ArrayList addContact(ArrayList<Contact> contactList1) {
         Contact contactPerson = new Contact();
 
@@ -41,12 +41,10 @@ public class AddressBook {
 
         return contactList.stream().anyMatch(contact ->contact.getName().equals(name));
     }
-
     @Override
     public String toString() {
         return "AddressBook{" + "contactList=" + contactList + '}';
     }
-
     public void editContact() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter first name:");
@@ -90,7 +88,6 @@ public class AddressBook {
             }
         }
     }
-
     public void deleteContact() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter first name:");
@@ -102,13 +99,11 @@ public class AddressBook {
             }
         }
     }
-
     public void addAddressBookMap(AddressBook ad) {
         System.out.println("Enter your Addres Book name ");
         String name = sc.nextLine();
         addressBookMap.put(name, ad);
     }
-
     public void displayMyAddressBook(ArrayList<Contact> arrayList) {
         System.out.println("My Address Books");
         System.out.println(addressBookMap.keySet());
@@ -116,18 +111,18 @@ public class AddressBook {
             System.out.println(key);
         }
     }
-
     public ArrayList crateNewAddressBook() {
         ArrayList addressBookName = new ArrayList();
         return addressBookName;
     }
-    
+
     public void searchPerson(HashMap<String, ArrayList<Contact>> addressBookNames) {
         int operation;
         do {
             System.out.println("1.Search in city");
             System.out.println("2.Search in state");
-            System.out.println("3.Exit");
+            System.out.println("3.Search by peson name");
+            System.out.println("4.Exit");
             System.out.println();
             System.out.print("Enter option : ");
             Scanner input = new Scanner(System.in);
@@ -158,14 +153,24 @@ public class AddressBook {
                     }
                     break;
                 case 3:
+                    Scanner scanner2 = new Scanner(System.in);
+                    System.out.println("Enter State ! ");
+                    String firstName = scanner2.nextLine();
+                    System.out.println("using this name and  below records are found ");
+                    for (String addressBookName : addressBookNames.keySet()) {
+                        System.out.println(addressBookName);
+                        ArrayList<Contact> contact2 = addressBookNames.get(addressBookName);
+                        contact2.stream().filter(state -> state.getName().equalsIgnoreCase(firstName))
+                                .forEach(x -> System.out.println(x));
+                    }
+                    break;
+                case 4:
                     System.out.println("Exist");
                     break;
 
             }
         }
-        while (operation != 3) ;
+        while (operation != 4) ;
     }
-    
 }
-	
 
