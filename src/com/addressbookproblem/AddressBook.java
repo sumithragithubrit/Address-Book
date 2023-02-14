@@ -121,6 +121,51 @@ public class AddressBook {
         ArrayList addressBookName = new ArrayList();
         return addressBookName;
     }
+    
+    public void searchPerson(HashMap<String, ArrayList<Contact>> addressBookNames) {
+        int operation;
+        do {
+            System.out.println("1.Search in city");
+            System.out.println("2.Search in state");
+            System.out.println("3.Exit");
+            System.out.println();
+            System.out.print("Enter option : ");
+            Scanner input = new Scanner(System.in);
+            operation = input.nextInt();
+            switch (operation) {
+                case 1:
+                    Scanner scanner = new Scanner(System.in);
+                    System.out.println("Enter City ! ");
+                    String cityName = scanner.nextLine();
+                    System.out.println("using this city and  below records are found ");
+                    for (String addressBookName : addressBookNames.keySet()) {
+                        System.out.println(addressBookName);
+                        ArrayList<Contact> con = addressBookNames.get(addressBookName);
+                        con.stream().filter(city -> city.getCity().equalsIgnoreCase(cityName))
+                                .forEach(x -> System.out.println(x));
+                    }
+                    break;
+                case 2:
+                    Scanner scanner1 = new Scanner(System.in);
+                    System.out.println("Enter State ! ");
+                    String stateName = scanner1.nextLine();
+                    System.out.println("using this state and  below records are found ");
+                    for (String addressBookName : addressBookNames.keySet()) {
+                        System.out.println(addressBookName);
+                        ArrayList<Contact> contact1 = addressBookNames.get(addressBookName);
+                        contact1.stream().filter(state -> state.getState().equalsIgnoreCase(stateName))
+                                .forEach(x -> System.out.println(x));
+                    }
+                    break;
+                case 3:
+                    System.out.println("Exist");
+                    break;
+
+            }
+        }
+        while (operation != 3) ;
+    }
+    
 }
 	
 
