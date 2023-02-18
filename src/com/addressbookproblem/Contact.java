@@ -2,7 +2,7 @@ package com.addressbookproblem;
 import java.util.Objects;
 
 public class Contact {
-	private String name ;
+    private String name ;
     private String surName;
     private String address;
     private String  city ;
